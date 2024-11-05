@@ -1,0 +1,249 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "anis",
+      "email": "anis@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "2",
+      "name": "hamad",
+      "email": "ahmad@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "d96c",
+      "name": "ghgfdgfds",
+      "email": "ahmad@gmail.comk",
+      "password": "44456565"
+    },
+    {
+      "id": "4960",
+      "name": "ani",
+      "email": "aaa@aaa",
+      "password": "123456"
+    },
+    {
+      "id": "4623",
+      "name": "anis",
+      "email": "anis@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "2bff",
+      "name": "anis",
+      "email": "anis@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "4dde",
+      "name": "anis",
+      "email": "anis@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "427a",
+      "name": "anis",
+      "email": "anis_1@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "4049",
+      "name": "wadee3",
+      "email": "wade3_1.mhamed@gmail.com",
+      "password": "123456789"
+    }
+  ],
+  "books": [
+    {
+      "bookName": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "genre": "Fiction",
+      "price": 344,
+      "id": "5b651"
+    },
+    {
+      "bookName": "Brave New World",
+      "author": "Aldous Huxley",
+      "genre": "Dystopian",
+      "price": 180,
+      "id": "f8ea"
+    },
+    {
+      "bookName": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "genre": "Classic",
+      "price": 150,
+      "id": "2297"
+    },
+    {
+      "bookName": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "genre": "Classic",
+      "price": 120,
+      "id": "1e99"
+    },
+    {
+      "bookName": "The Alchemist",
+      "author": "Paulo Coelho",
+      "genre": "Fiction",
+      "price": 55,
+      "id": "6ef7"
+    },
+    {
+      "bookName": "The Road",
+      "author": "Cormac McCarthy",
+      "genre": "Post-Apocalyptic",
+      "price": 55,
+      "id": "a2d01"
+    },
+    {
+      "bookName": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "genre": "Fantasy",
+      "price": 222,
+      "id": "245e1"
+    },
+    {
+      "bookName": "Fahrenheit 451",
+      "author": "Ray Bradbury",
+      "genre": "Dystopian",
+      "price": 255,
+      "id": "20d61"
+    },
+    {
+      "bookName": "The Picture of Dorian Gray",
+      "author": "Oscar Wilde",
+      "genre": "Classic",
+      "price": 345,
+      "id": "95121"
+    },
+    {
+      "bookName": "The Catch-22",
+      "author": "Joseph Heller",
+      "genre": "Satire",
+      "price": 250,
+      "id": "f3121"
+    },
+    {
+      "bookName": "Life of Pi",
+      "author": "Yann Martel",
+      "genre": "Fiction",
+      "price": 800,
+      "id": "87781"
+    },
+    {
+      "bookName": "Harry Potter and the Sorcerer's Stone",
+      "author": "J.K. Rowling",
+      "genre": "Fantasy",
+      "price": 140,
+      "id": "49a5"
+    },
+    {
+      "bookName": "The Catcher in the Rye",
+      "author": "J.D. Salinger",
+      "genre": "Fiction",
+      "price": 220,
+      "id": "924c"
+    },
+    {
+      "bookName": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "genre": "Fiction",
+      "price": 344,
+      "id": "5b65"
+    },
+    {
+      "bookName": "1984",
+      "author": "George Orwell",
+      "genre": "Dystopian",
+      "price": 200,
+      "id": "4217"
+    },
+    {
+      "bookName": "Brave New World",
+      "author": "Aldous Huxley",
+      "genre": "Dystopian",
+      "price": 180,
+      "id": "f8ea1"
+    },
+    {
+      "bookName": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "genre": "Classic",
+      "price": 150,
+      "id": "22971"
+    },
+    {
+      "bookName": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "genre": "Classic",
+      "price": 120,
+      "id": "1e991"
+    },
+    {
+      "bookName": "Moby Dick",
+      "author": "Herman Melville",
+      "genre": "Classic",
+      "price": 140,
+      "id": "8ffe1"
+    },
+    {
+      "bookName": "The Alchemist",
+      "author": "Paulo Coelho",
+      "genre": "Fiction",
+      "price": 55,
+      "id": "6ef71"
+    },
+    {
+      "bookName": "The Road",
+      "author": "Cormac McCarthy",
+      "genre": "Post-Apocalyptic",
+      "price": 55,
+      "id": "a2d0"
+    },
+    {
+      "bookName": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "genre": "Fantasy",
+      "price": 222,
+      "id": "245e"
+    },
+    {
+      "bookName": "Fahrenheit 451",
+      "author": "Ray Bradbury",
+      "genre": "Dystopian",
+      "price": 255,
+      "id": "20d6"
+    },
+    {
+      "bookName": "The Picture of Dorian Gray",
+      "author": "Oscar Wilde",
+      "genre": "Classic",
+      "price": 345,
+      "id": "9512"
+    },
+    {
+      "bookName": "The Catch-22",
+      "author": "Joseph Heller",
+      "genre": "Satire",
+      "price": 250,
+      "id": "f312"
+    },
+    {
+      "id": "c838",
+      "bookName": "fdsf",
+      "author": "fdsf",
+      "genre": "Classic",
+      "price": 22
+    },
+    {
+      "id": "fc74",
+      "bookName": "xccxc",
+      "author": "dsfsf",
+      "genre": "Dystopian",
+      "price": 344
+    }
+  ]
+}
