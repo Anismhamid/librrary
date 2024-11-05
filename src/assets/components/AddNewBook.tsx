@@ -44,6 +44,7 @@ const AddNewBook: FunctionComponent<AddNewBookProps> = ({newBook}) => {
 				successMsg(`The book ${values.bookName} was added successfully.`);
 				setIsRendered(!newBook)
 				console.log(!newBook);
+				
 				resetForm();
 			} catch (error) {
 				errorMsg(`The book ${values.bookName} could not be added.`);
