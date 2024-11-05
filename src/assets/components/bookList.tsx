@@ -10,7 +10,7 @@ interface BookListProps {
 	newBook: boolean;
 }
 
-const BookList: FunctionComponent<BookListProps> = () => {
+const BookList: FunctionComponent<BookListProps> = ({newBook = false}) => {
 	const [books, setBooks] = useState<Book[]>([]);
 	const [isRendered, setIsRendered] = useState<boolean>(false);
 	const [shouldFetch, setShouldFetch] = useState<boolean>(true);
@@ -25,8 +25,8 @@ const BookList: FunctionComponent<BookListProps> = () => {
 				try {
 					const res = await gettAllBooks();
 					setBooks(res.data);
-					setShouldFetch(false);
-					setIsLoading(false);
+					setShouldFetch(!shouldFetch);
+					setIsLoading(!isLoading);
 				} catch (error) {
 					errorMsg("error");
 				}
@@ -35,12 +35,9 @@ const BookList: FunctionComponent<BookListProps> = () => {
 		fetchBooks();
 	}, [shouldFetch]);
 
-	
 	if (isLoading) {
 		return <Loading />;
-	} else {
 	}
-
 	return (
 		<>
 			<div className='row m-auto w-100'>

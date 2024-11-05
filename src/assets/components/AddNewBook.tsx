@@ -1,17 +1,20 @@
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useFormik} from "formik";
-import {FunctionComponent, useEffect} from "react";
+import {FunctionComponent, useEffect, useState} from "react";
 import * as yup from "yup";
 import {addBook} from "../userServices/booksServices";
 import {Book} from "../interfaces/Books";
 import {errorMsg, successMsg} from "../userServices/toastify";
 
 interface AddNewBookProps {
-	newBook: boolean
+	newBook: boolean;
 }
 
-const AddNewBook: FunctionComponent<AddNewBookProps> = () => {
+const AddNewBook: FunctionComponent<AddNewBookProps> = ({newBook}) => {
+	const [isRendered, setIsRendered] = useState<boolean>(false);
+
+
 
 	const formik = useFormik({
 		initialValues: {
@@ -39,6 +42,8 @@ const AddNewBook: FunctionComponent<AddNewBookProps> = () => {
 			try {
 				await addBook(values as Book);
 				successMsg(`The book ${values.bookName} was added successfully.`);
+				setIsRendered(!newBook)
+				console.log(!newBook);
 				resetForm();
 			} catch (error) {
 				errorMsg(`The book ${values.bookName} could not be added.`);

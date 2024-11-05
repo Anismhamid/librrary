@@ -9,7 +9,7 @@ export const routes = [
 	},
 	{
 		path: "/home",
-		element: <Home newBook={false}  />,
+		element: <Home  />,
 	},
 	{
 		path: "/registry",
