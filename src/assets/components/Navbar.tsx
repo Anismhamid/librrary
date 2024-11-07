@@ -13,9 +13,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 	useEffect(() => {
 		const loggedInStatus = sessionStorage.getItem("loggedIn");
 		if (loggedInStatus === "true") {
-			setIsLoggedIn(true);
-		} else {
-			setIsLoggedIn(false);
+			setIsLoggedIn(!isLoggedIn);
 		}
 	}, []);
 
@@ -40,7 +38,8 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 					Navbar
 				</NavLink>
 				<hr />
-				{!isLoggedIn && (
+
+				{isLoggedIn && (
 					<ul className='navbar-nav text-dark mt-2 d-flex'>
 						<li className='nav-item'>
 							<h5
@@ -53,18 +52,18 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 								{emailUser || "Guste"}
 							</h5>
 						</li>
-						{!isLoggedIn && (
-								<button
-									onClick={handleLogout}
-									className='btn btn-outline-primary'
-									style={{
-										backgroundColor: theme.backgroundColor,
-										color: theme.color,
-									}}
-								>
-									Log Out
-								</button>
-						)}
+						<li>
+							<button
+								onClick={handleLogout}
+								className='btn btn-outline-primary'
+								style={{
+									backgroundColor: theme.backgroundColor,
+									color: theme.color,
+								}}
+							>
+								Log Out
+							</button>
+						</li>
 					</ul>
 				)}
 			</div>

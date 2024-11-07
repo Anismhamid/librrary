@@ -20,17 +20,18 @@ const Login: FunctionComponent<LoginProps> = () => {
 		const loggedInStatus = sessionStorage.getItem("loggedIn");
 
 		if (loggedInStatus === "true") {
-			setIsLoggedIn(true);
+			setIsLoggedIn(!loggedIn);
 			navigate("/home");
 		} else {
 			gettUsers()
 				.then((res) => {
 					setUsers(res.data);
-					setIsLoggedIn(false);
+					setIsLoggedIn(!loggedIn);
 					setLoading(!loading);
 				})
 				.catch((err) => {
 					errorMsg(err);
+					setLoading(false);
 				});
 		}
 	}, []);
@@ -60,22 +61,20 @@ const Login: FunctionComponent<LoginProps> = () => {
 				if (user) {
 					sessionStorage.setItem("userEmail", values.email);
 					sessionStorage.setItem("loggedIn", "true");
-					sessionStorage.getItem("loggedIn");
 					setIsLoggedIn(true);
 					navigate("/home");
 				} else {
 					sessionStorage.setItem("loggedIn", "false");
 					errorMsg("Invalid email or password");
 					setIsLoggedIn(false);
+					console.log(loggedIn);
 					navigate("/");
 				}
 			}
 		},
 	});
 
-	if (loading) {
-		return <Loading />;
-	}
+	loading && <Loading />;
 
 	return (
 		<div className='text-center m-auto pt-5 login' style={{maxWidth: "28rem"}}>
@@ -93,7 +92,6 @@ const Login: FunctionComponent<LoginProps> = () => {
 				{formik.touched.email && formik.errors.email && (
 					<p className='text-danger'>{formik.errors.email}</p>
 				)}
-
 				<input
 					id='password'
 					type='password'
@@ -106,7 +104,6 @@ const Login: FunctionComponent<LoginProps> = () => {
 				{formik.touched.password && formik.errors.password && (
 					<p className='text-danger'>{formik.errors.password}</p>
 				)}
-
 				<button
 					type='submit'
 					className='btn btn-success'

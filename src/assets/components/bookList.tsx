@@ -32,9 +32,7 @@ const BookList: FunctionComponent<BookListProps> = ({newBook}) => {
 	}
 
 	return (
-		<div className='row m-auto w-100'>
-			<div className='col-sm-12 col-md-4 col-lg-3'>
-				<table className='table table-dark table-hover m-auto'>
+				<table className='table table-dark table-hover m-auto w-100'>
 					<thead>
 						<tr>
 							<th>#ID</th>
@@ -98,8 +96,6 @@ const BookList: FunctionComponent<BookListProps> = ({newBook}) => {
 						)}
 					</tbody>
 				</table>
-			</div>
-		</div>
 	);
 };
 

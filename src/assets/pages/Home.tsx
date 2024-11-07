@@ -17,7 +17,7 @@ const Home: FunctionComponent<HomeProps> = () => {
 	return (
 		<div className='row mx-auto' >
 			<div
-				className='col-sm-12 col-md-4'
+				className='col-sm-12 col-md-4 mb-5'
 			>
 				<AddNewBook onNewBookAdded={handleNewBookAdded} />
 			</div>

@@ -55,7 +55,7 @@ const AddNewBook: FunctionComponent<AddNewBookProps> = ({onNewBookAdded}) => {
 		<form
 			className='login p-4 m-auto'
 			onSubmit={formik.handleSubmit}
-			style={{maxWidth: "20rem"}}
+			style={{maxWidth: "25rem"}}
 		>
 			<h1>Add Book</h1>
 			<input
