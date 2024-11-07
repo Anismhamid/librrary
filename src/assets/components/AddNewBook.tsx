@@ -1,20 +1,18 @@
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useFormik} from "formik";
-import {FunctionComponent, useEffect, useState} from "react";
+import {FunctionComponent, useState} from "react";
 import * as yup from "yup";
 import {addBook} from "../userServices/booksServices";
 import {Book} from "../interfaces/Books";
 import {errorMsg, successMsg} from "../userServices/toastify";
 
 interface AddNewBookProps {
-	newBook: boolean;
+	onNewBookAdded: () => void;
 }
 
-const AddNewBook: FunctionComponent<AddNewBookProps> = ({newBook}) => {
-	const [isRendered, setIsRendered] = useState<boolean>(false);
-
-
+const AddNewBook: FunctionComponent<AddNewBookProps> = ({onNewBookAdded}) => {
+	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	const formik = useFormik({
 		initialValues: {
@@ -39,20 +37,19 @@ const AddNewBook: FunctionComponent<AddNewBookProps> = ({newBook}) => {
 				.positive("Price must be a positive number"),
 		}),
 		onSubmit: async (values, {resetForm}) => {
+			setIsSubmitting(true);
 			try {
 				await addBook(values as Book);
 				successMsg(`The book ${values.bookName} was added successfully.`);
-				setIsRendered(!newBook)
-				console.log(!newBook);
-				
 				resetForm();
+				onNewBookAdded();
 			} catch (error) {
 				errorMsg(`The book ${values.bookName} could not be added.`);
+			} finally {
+				setIsSubmitting(false);
 			}
 		},
 	});
-
-	const plus = <FontAwesomeIcon icon={faPlus} />;
 
 	return (
 		<form
@@ -120,8 +117,10 @@ const AddNewBook: FunctionComponent<AddNewBookProps> = ({newBook}) => {
 					<button
 						type='submit'
 						className='btn m-auto btn-success w-50 d-flex align-items-center justify-content-around'
+						disabled={isSubmitting}
 					>
-						<span>{plus}</span> Add
+						<FontAwesomeIcon icon={faPlus} />{" "}
+						{isSubmitting ? "Adding..." : "Add"}
 					</button>
 				</div>
 			</div>

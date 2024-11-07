@@ -13,19 +13,29 @@ const Login: FunctionComponent<LoginProps> = () => {
 	const navigate = useNavigate();
 	const [users, setUsers] = useState<Users[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
+	const [loggedIn, setIsLoggedIn] = useState<boolean>(false);
 
 	useEffect(() => {
-		gettUsers()
-			.then((res) => {
-				setUsers(res.data);
-				setLoading(false);
-			})
-			.catch((err) => {
-				errorMsg(err);
-				setLoading(false);
-			});
-		sessionStorage.setItem("loggedIn", "false");
+		const loggedInStatus = localStorage.getItem("loggedIn");
+
+		if (loggedInStatus === "true") {
+			setIsLoggedIn(!loggedIn);
+			navigate("/home");
+		} else {
+			gettUsers()
+				.then((res) => {
+					setUsers(res.data);
+					setLoading(!loading);
+				})
+				.catch((err) => {
+					errorMsg(err);
+				});
+		}
 	}, []);
+
+	const handleLogIn = () => {
+		setIsLoggedIn((prev) => !prev);
+	};
 
 	const formik: FormikValues = useFormik<FormikValues>({
 		initialValues: {
@@ -44,20 +54,22 @@ const Login: FunctionComponent<LoginProps> = () => {
 				.min(6, "Password must be at least 6 characters"),
 		}),
 		onSubmit: (values) => {
-
 			if (!loading) {
 				const user = users.find(
 					(user) =>
 						values.email === user.email && values.password === user.password,
 				);
-
+				handleLogIn();
 				if (user) {
-					sessionStorage.setItem("userEmail", values.email);
-					sessionStorage.setItem("loggedIn", "true");
+					localStorage.setItem("userEmail", values.email);
+					localStorage.setItem("loggedIn", "true");
+					localStorage.getItem("loggedIn");
+					setIsLoggedIn(true);
 					navigate("/home");
 				} else {
-					sessionStorage.setItem("loggedIn", "false");
+					localStorage.setItem("loggedIn", "false");
 					errorMsg("Invalid email or password");
+					setIsLoggedIn(false);
 					navigate("/");
 				}
 			}
@@ -65,11 +77,7 @@ const Login: FunctionComponent<LoginProps> = () => {
 	});
 
 	if (loading) {
-		return (
-			<div>
-				<Loading />
-			</div>
-		);
+		return <Loading />;
 	}
 
 	return (
@@ -102,12 +110,16 @@ const Login: FunctionComponent<LoginProps> = () => {
 					<p className='text-danger'>{formik.errors.password}</p>
 				)}
 
-				<button type='submit' className='btn btn-success'>
+				<button
+					type='submit'
+					className='btn btn-success'
+					disabled={loading || formik.isSubmitting}
+				>
 					Login
 				</button>
 			</form>
 			<h5 className='card-text my-3'>
-				Don't have an account?
+				Don't have an account?{" "}
 				<Link to={"/registry"}>
 					<span className='text-primary p-3'>Register</span>
 				</Link>
