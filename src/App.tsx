@@ -48,7 +48,7 @@ function App() {
 								{darkModes ? "Light Mode" : "Dark ode"}
 							</label>
 						</div>
-						<Navbar onNewBookAdded={()=>setdarkModes(!darkModes)} />
+						<Navbar />
 					</header>
 					<main>
 						<Routes>

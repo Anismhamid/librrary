@@ -16,15 +16,17 @@ const Login: FunctionComponent<LoginProps> = () => {
 	const [loggedIn, setIsLoggedIn] = useState<boolean>(false);
 
 	useEffect(() => {
-		const loggedInStatus = localStorage.getItem("loggedIn");
+		sessionStorage.setItem("loggedIn", "false");
+		const loggedInStatus = sessionStorage.getItem("loggedIn");
 
 		if (loggedInStatus === "true") {
-			setIsLoggedIn(!loggedIn);
+			setIsLoggedIn(true);
 			navigate("/home");
 		} else {
 			gettUsers()
 				.then((res) => {
 					setUsers(res.data);
+					setIsLoggedIn(false);
 					setLoading(!loading);
 				})
 				.catch((err) => {
@@ -32,10 +34,6 @@ const Login: FunctionComponent<LoginProps> = () => {
 				});
 		}
 	}, []);
-
-	const handleLogIn = () => {
-		setIsLoggedIn((prev) => !prev);
-	};
 
 	const formik: FormikValues = useFormik<FormikValues>({
 		initialValues: {
@@ -59,15 +57,14 @@ const Login: FunctionComponent<LoginProps> = () => {
 					(user) =>
 						values.email === user.email && values.password === user.password,
 				);
-				handleLogIn();
 				if (user) {
-					localStorage.setItem("userEmail", values.email);
-					localStorage.setItem("loggedIn", "true");
-					localStorage.getItem("loggedIn");
+					sessionStorage.setItem("userEmail", values.email);
+					sessionStorage.setItem("loggedIn", "true");
+					sessionStorage.getItem("loggedIn");
 					setIsLoggedIn(true);
 					navigate("/home");
 				} else {
-					localStorage.setItem("loggedIn", "false");
+					sessionStorage.setItem("loggedIn", "false");
 					errorMsg("Invalid email or password");
 					setIsLoggedIn(false);
 					navigate("/");

@@ -2,33 +2,33 @@ import {FunctionComponent, useContext, useEffect, useState} from "react";
 import {NavLink, useNavigate} from "react-router-dom";
 import {SiteTheme} from "../../App";
 
-interface NavbarProps {
-	onNewBookAdded: () => void;
-}
+interface NavbarProps {}
 
 const Navbar: FunctionComponent<NavbarProps> = () => {
 	const theme = useContext(SiteTheme);
-	const emailUser = localStorage.getItem("userEmail");
+	const emailUser = sessionStorage.getItem("userEmail");
 	const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		const loggedInStatus = localStorage.getItem("loggedIn");
+		const loggedInStatus = sessionStorage.getItem("loggedIn");
 		if (loggedInStatus === "true") {
 			setIsLoggedIn(true);
+		} else {
+			setIsLoggedIn(false);
 		}
 	}, []);
 
 	const handleLogout = () => {
-		localStorage.removeItem("userEmail");
-		localStorage.setItem("loggedIn", "false");
+		sessionStorage.removeItem("userEmail");
+		sessionStorage.setItem("loggedIn", "false");
 		setIsLoggedIn(false);
 		navigate("/");
 	};
 
 	return (
 		<nav
-			className='navbar navbar-expand-lg'
+			className='navbar'
 			style={{backgroundColor: theme.backgroundColor, color: theme.color}}
 		>
 			<div className='container-fluid'>
@@ -39,62 +39,34 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 				>
 					Navbar
 				</NavLink>
-				<button
-					className='navbar-toggler'
-					type='button'
-					data-bs-toggle='collapse'
-					data-bs-target='#navbarNav'
-					aria-controls='navbarNav'
-					aria-expanded='false'
-					aria-label='Toggle navigation'
-				>
-					<span className='navbar-toggler-icon'></span>
-				</button>
-				<div className='collapse navbar-collapse' id='navbarNav'>
-					<hr />
-					<ul className='navbar-nav text-dark mt-2'>
-						{isLoggedIn && (
-							<>
-								<li className='nav-item'>
-									<h5
-										className='card-title'
-										style={{
-											backgroundColor: theme.backgroundColor,
-											color: theme.color,
-										}}
-									>
-										Username: {emailUser || "Guste"}
-									</h5>
-								</li>
-								<li>
-									<button
-										onClick={handleLogout}
-										className='btn btn-outline-primary'
-										style={{
-											backgroundColor: theme.backgroundColor,
-											color: theme.color,
-										}}
-									>
-										Log Out
-									</button>
-								</li>
-							</>
-						)}
+				<hr />
+				{!isLoggedIn && (
+					<ul className='navbar-nav text-dark mt-2 d-flex'>
+						<li className='nav-item'>
+							<h5
+								className='card-title'
+								style={{
+									backgroundColor: theme.backgroundColor,
+									color: theme.color,
+								}}
+							>
+								{emailUser || "Guste"}
+							</h5>
+						</li>
 						{!isLoggedIn && (
-							<li className='nav-item'>
-								<h5
-									className='card-title'
+								<button
+									onClick={handleLogout}
+									className='btn btn-outline-primary'
 									style={{
 										backgroundColor: theme.backgroundColor,
 										color: theme.color,
 									}}
 								>
-									welcome to Laibrary Project
-								</h5>
-							</li>
+									Log Out
+								</button>
 						)}
 					</ul>
-				</div>
+				)}
 			</div>
 		</nav>
 	);
