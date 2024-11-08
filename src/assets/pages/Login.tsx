@@ -16,18 +16,16 @@ const Login: FunctionComponent<LoginProps> = () => {
 	const [loggedIn, setIsLoggedIn] = useState<boolean>(false);
 
 	useEffect(() => {
-		sessionStorage.setItem("loggedIn", "false");
 		const loggedInStatus = sessionStorage.getItem("loggedIn");
-
 		if (loggedInStatus === "true") {
-			setIsLoggedIn(!loggedIn);
 			navigate("/home");
 		} else {
 			gettUsers()
 				.then((res) => {
 					setUsers(res.data);
-					setIsLoggedIn(!loggedIn);
-					setLoading(!loading);
+					setLoading(false);
+					console.log(loggedIn);
+					
 				})
 				.catch((err) => {
 					errorMsg(err);
@@ -65,16 +63,16 @@ const Login: FunctionComponent<LoginProps> = () => {
 					navigate("/home");
 				} else {
 					sessionStorage.setItem("loggedIn", "false");
-					errorMsg("Invalid email or password");
 					setIsLoggedIn(false);
-					console.log(loggedIn);
-					navigate("/");
+					errorMsg("Invalid email or password");
 				}
 			}
 		},
 	});
 
-	loading && <Loading />;
+	if (loading) {
+		return <Loading />;
+	}
 
 	return (
 		<div className='text-center m-auto pt-5 login' style={{maxWidth: "28rem"}}>

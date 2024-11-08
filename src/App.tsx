@@ -22,8 +22,8 @@ const themes = {
 export const SiteTheme = createContext(themes.light);
 
 function App() {
-
 	const [darkModes, setdarkModes] = useState<boolean>(false);
+	const [logged, setLogged] = useState<boolean>(false);
 
 	return (
 		<div className='App'>
@@ -48,7 +48,7 @@ function App() {
 								{darkModes ? "Light Mode" : "Dark ode"}
 							</label>
 						</div>
-						<Navbar />
+						<Navbar logIn={false} />
 					</header>
 					<main>
 						<Routes>

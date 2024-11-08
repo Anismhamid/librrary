@@ -2,9 +2,11 @@ import {FunctionComponent, useContext, useEffect, useState} from "react";
 import {NavLink, useNavigate} from "react-router-dom";
 import {SiteTheme} from "../../App";
 
-interface NavbarProps {}
+interface NavbarProps {
+	logIn:boolean
+}
 
-const Navbar: FunctionComponent<NavbarProps> = () => {
+const Navbar: FunctionComponent<NavbarProps> = ({logIn}) => {
 	const theme = useContext(SiteTheme);
 	const emailUser = sessionStorage.getItem("userEmail");
 	const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -13,7 +15,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 	useEffect(() => {
 		const loggedInStatus = sessionStorage.getItem("loggedIn");
 		if (loggedInStatus === "true") {
-			setIsLoggedIn(!isLoggedIn);
+			setIsLoggedIn(true);
 		}
 	}, []);
 
@@ -21,6 +23,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 		sessionStorage.removeItem("userEmail");
 		sessionStorage.setItem("loggedIn", "false");
 		setIsLoggedIn(false);
+		console.log("loggedIn", isLoggedIn);
 		navigate("/");
 	};
 
@@ -49,7 +52,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 									color: theme.color,
 								}}
 							>
-								{emailUser || "Guste"}
+								{emailUser || "sbamba"}
 							</h5>
 						</li>
 						<li>
