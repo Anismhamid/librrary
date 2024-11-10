@@ -8,13 +8,13 @@ import {Book} from "../interfaces/Books";
 import {errorMsg, successMsg} from "../userServices/toastify";
 
 interface AddNewBookProps {
-	onNewBookAdded: () => void;
+	newBook: () => void;
 }
 
-const AddNewBook: FunctionComponent<AddNewBookProps> = ({onNewBookAdded}) => {
+const AddNewBook: FunctionComponent<AddNewBookProps> = ({newBook}) => {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
-	const formik = useFormik({
+	const formik = useFormik<Book>({
 		initialValues: {
 			bookName: "",
 			author: "",
@@ -42,7 +42,7 @@ const AddNewBook: FunctionComponent<AddNewBookProps> = ({onNewBookAdded}) => {
 				await addBook(values as Book);
 				successMsg(`The book ${values.bookName} was added successfully.`);
 				resetForm();
-				onNewBookAdded();
+				newBook();
 			} catch (error) {
 				errorMsg(`The book ${values.bookName} could not be added.`);
 			} finally {

@@ -3,13 +3,13 @@ import {NavLink, useNavigate} from "react-router-dom";
 import {SiteTheme} from "../../App";
 
 interface NavbarProps {
-	logIn:boolean
+	logIn: boolean;
 }
 
 const Navbar: FunctionComponent<NavbarProps> = ({logIn}) => {
 	const theme = useContext(SiteTheme);
 	const emailUser = sessionStorage.getItem("userEmail");
-	const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+	const [isLoggedIn, setIsLoggedIn] = useState<boolean>(logIn);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -17,13 +17,12 @@ const Navbar: FunctionComponent<NavbarProps> = ({logIn}) => {
 		if (loggedInStatus === "true") {
 			setIsLoggedIn(true);
 		}
-	}, []);
+	}, [logIn]);
 
 	const handleLogout = () => {
 		sessionStorage.removeItem("userEmail");
 		sessionStorage.setItem("loggedIn", "false");
 		setIsLoggedIn(false);
-		console.log("loggedIn", isLoggedIn);
 		navigate("/");
 	};
 
@@ -38,7 +37,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({logIn}) => {
 					to='/home'
 					style={{backgroundColor: theme.backgroundColor, color: theme.color}}
 				>
-					Navbar
+					Books Library
 				</NavLink>
 				<hr />
 

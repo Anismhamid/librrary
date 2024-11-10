@@ -53,6 +53,12 @@
       "name": "wadee3",
       "email": "wade3_1.mhamed@gmail.com",
       "password": "123456789"
+    },
+    {
+      "id": "d7e6",
+      "name": "anis@gmail.com",
+      "email": "aaaaaaaaaaaaaa@a",
+      "password": "123456"
     }
   ],
   "books": [
@@ -216,6 +222,13 @@
       "author": "11",
       "genre": "Fiction",
       "price": 11
+    },
+    {
+      "id": "c29a",
+      "bookName": "hhhhh",
+      "author": "wwww",
+      "genre": "Fantasy",
+      "price": 252
     }
   ]
 }

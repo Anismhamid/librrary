@@ -1,16 +1,19 @@
 import {FormikValues, useFormik} from "formik";
-import {FunctionComponent, useEffect, useRef, useState} from "react";
+import {FunctionComponent, useContext, useEffect, useRef, useState} from "react";
 import * as yup from "yup";
 import {Users} from "../interfaces/User";
 import {gettUsers, postUsers} from "../userServices/userServies";
 import {Link, useNavigate} from "react-router-dom";
 import {errorMsg} from "../userServices/toastify";
+import { SiteTheme } from "../../App";
 
 interface RegistryProps {}
 
 const Registry: FunctionComponent<RegistryProps> = () => {
 	const navigate = useNavigate();
 	const [users, setUsers] = useState<Users[]>([]);
+	const theme = useContext(SiteTheme);
+
 
 	useEffect(() => {
 		gettUsers().then((res) => {
@@ -52,7 +55,7 @@ const Registry: FunctionComponent<RegistryProps> = () => {
 	});
 
 	return (
-		<div className='text-center pt-5 login m-auto' style={{maxWidth: "28rem"}}>
+		<div className='text-center mt-5 pt-5 login m-auto' style={{maxWidth: "28rem",backgroundColor:theme.backgroundColor,color:theme.color}}>
 			<form
 				onSubmit={formik.handleSubmit}
 				className='d-flex flex-column p-3'

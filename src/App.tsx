@@ -7,60 +7,52 @@ import {useState} from "react";
 
 const themes = {
 	dark: {
-		color: "#070200",
-		backgroundColor: "#fff0ec",
+		color: "white",
+		backgroundColor: "#031618",
 	},
 	light: {
-		color: "#fff0ec",
-		backgroundColor: "#070200",
-	},
-	gradient: {
-		color: "background-image: linear-gradient(to right top, #536d96, #52739f, #4f79a8, #4c7fb0, #4785b9)",
+		color: "black",
+		backgroundColor: "white",
 	},
 };
 
-export const SiteTheme = createContext(themes.light);
+export const SiteTheme = createContext(themes.dark);
 
 function App() {
 	const [darkModes, setdarkModes] = useState<boolean>(false);
-	const [logged, setLogged] = useState<boolean>(false);
 
 	return (
-		<div className='App'>
+		<div
+			className='App'
+			style={{minHeight:"100vh"}}
+		>
 			<ToastContainer />
-			<SiteTheme.Provider
-				value={darkModes ? themes.dark : themes.light || themes.gradient}
-			>
+			<SiteTheme.Provider value={darkModes ? themes.dark : themes.light}>
 				<Router>
-					<header>
-						<div className='form-check form-switch w-25 m-auto'>
-							<input
-								className='form-check-input'
-								type='checkbox'
-								role='switch'
-								id='flexSwitchCheckDefault'
-								onChange={() => setdarkModes(!darkModes)}
+					<div className='form-check form-switch w-100'>
+						<input
+							className='form-check-input'
+							type='checkbox'
+							role='switch'
+							id='flexSwitchCheckDefault'
+							onChange={() => setdarkModes(!darkModes)}
+						/>
+						<label
+							className='form-check-label fs-5'
+							htmlFor='flexSwitchCheckDefault'
+						>
+							{darkModes ? "Dark" : "Light"}
+						</label>
+					</div>
+					<Routes>
+						{routes.map((pathConfig, index) => (
+							<Route
+								key={index}
+								path={pathConfig.path}
+								element={pathConfig.element}
 							/>
-							<label
-								className='form-check-label fs-5'
-								htmlFor='flexSwitchCheckDefault'
-							>
-								{darkModes ? "Light Mode" : "Dark ode"}
-							</label>
-						</div>
-						<Navbar logIn={false} />
-					</header>
-					<main>
-						<Routes>
-							{routes.map((pathConfig, index) => (
-								<Route
-									key={index}
-									path={pathConfig.path}
-									element={pathConfig.element}
-								/>
-							))}
-						</Routes>
-					</main>
+						))}
+					</Routes>
 				</Router>
 			</SiteTheme.Provider>
 		</div>

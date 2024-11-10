@@ -2,6 +2,8 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Registry from "../pages/Registry";
 
+
+
 export const routes = [
 	{
 		path: "/",
@@ -9,10 +11,11 @@ export const routes = [
 	},
 	{
 		path: "/home",
-		element: <Home  />,
+		element: <Home />,
 	},
 	{
 		path: "/registry",
 		element: <Registry />,
 	},
 ];
+

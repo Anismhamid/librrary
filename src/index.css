@@ -1,9 +1,8 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 body {
-	font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-		"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-		sans-serif;
+	font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 	font-weight: 400;
 	font-style: normal;
 	-webkit-font-smoothing: antialiased;
@@ -21,20 +20,18 @@ body {
 
 main {
 	min-height: 90vh;
-	padding-top: 50px;
-	background-image: linear-gradient(rgba(0, 0, 0, 0.779),rgba(0, 0, 0, 0.344)),url("/public/images/6751809.jpg");
+	background-image: linear-gradient(rgba(0, 0, 0, 0.779), rgba(0, 0, 0, 0.344)),
+		url("/public/images/6751809.jpg");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-
-	& header {
-		position: sticky;
-		width: 100%;
-	}
+}
+header {
+	position: sticky;
+	width: 100%;
 }
 .login {
-	background: rgba(255, 255, 255, 0.13);
 	border-radius: 16px;
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(3px);
@@ -43,4 +40,26 @@ main {
 	& input {
 		filter: blur(0px);
 	}
+}
+
+::-webkit-scrollbar {
+	width: 15px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #f0f0f0;
+	border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+	background-color: #888;
+	border-radius: 10px;
+	border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: #555;
+}
+::-webkit-scrollbar-corner {
+	background-color: #f1f1f1;
 }
